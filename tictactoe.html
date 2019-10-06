@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caro</title>
+</head>
+<body>
+<form name="Caro">
+    <p id="idoutput"></p>
+    <script>
+        let bancaro = '<table border="1;" style="border-collapse: collapse" cellpadding="0" cellspacing="0">';
+        let quancaro = [];
+        for (f = 0; f < 3; f++) {
+            quancaro[f] = new Array(' ', ' ', ' ');
+        }
+        let turn = true;
+        for (i = 0; i < 3; i++) {
+            bancaro += '<tr>';
+            for (j = 0; j < 3; j++) {
+                bancaro += '<td style="text-align: center" width="20" height="20">' + quancaro[i][j] + '<td/>';
+            }
+            bancaro += '<tr/>';
+        }
+        bancaro += '<table/>';
+        document.getElementById('idoutput').innerHTML = bancaro;
+
+        function clickx() {
+            let bancaro = '<table border="1;" style="border-collapse: collapse" cellpadding="0" cellspacing="0">';
+            let x = parseInt(prompt('X='));
+            let y = parseInt(prompt('Y='));
+            if (turn) {
+                quancaro[x][y] = 'X';
+                for (i = 0; i < 3; i++) {
+                    bancaro += '<tr>';
+                    for (j = 0; j < 3; j++) {
+                        bancaro += '<td style="text-align: center" width="20" height="20">' + quancaro[i][j] + '<td/>';
+                    }
+                    bancaro += '<tr/>';
+                }
+                bancaro += '<table/>';
+                document.getElementById('idoutput').innerHTML = bancaro;
+                turn = false;
+            }
+            if ((quancaro[0][0] == 'X' && quancaro[0][1] == 'X' && quancaro[0][2] == 'X') || (quancaro[1][0] == 'X' && quancaro[1][1] == 'X' && quancaro[1][2] == 'X') || (quancaro[2][0] == 'X' && quancaro[2][1] == 'X' && quancaro[2][2] == 'X') || (quancaro[0][0] == 'X' && quancaro[1][0] == 'X' && quancaro[2][0] == 'X') || (quancaro[0][1] == 'X' && quancaro[1][1] == 'X' && quancaro[2][1] == 'X') || (quancaro[0][2] == 'X' && quancaro[1][2] == 'X' && quancaro[2][2] == 'X') || (quancaro[0][0] == 'X' && quancaro[1][1] == 'X' && quancaro[2][2] == 'X') || (quancaro[2][0] == 'X' && quancaro[1][1] == 'X' && quancaro[0][2] == 'X')) {
+                alert('X win');
+            }
+            console.log(quancaro[0][0]);
+
+        }
+
+        function clicko() {
+            let bancaro = '<table border="1;" style="border-collapse: collapse" cellpadding="0" cellspacing="0">';
+            let x = parseInt(prompt('X='));
+            let y = parseInt(prompt('Y='));
+            if (turn) {
+            } else {
+                quancaro[x][y] = 'O';
+                for (i = 0; i < 3; i++) {
+                    bancaro += '<tr>';
+                    for (j = 0; j < 3; j++) {
+                        bancaro += '<td style="text-align: center" width="20" height="20">' + quancaro[i][j] + '<td/>';
+                    }
+                    bancaro += '<tr/>';
+                }
+                bancaro += '<table/>';
+                document.getElementById('idoutput').innerHTML = bancaro;
+                turn = true;
+            }
+            if ((quancaro[0][0] == 'O' && quancaro[0][1] == 'O' && quancaro[0][2] == 'O') || (quancaro[1][0] == 'O' && quancaro[1][1] == 'O' && quancaro[1][2] == 'O') || (quancaro[2][0] == 'O' && quancaro[2][1] == 'O' && quancaro[2][2] == 'O') || (quancaro[0][0] == 'O' && quancaro[1][0] == 'O' && quancaro[2][0] == 'O') || (quancaro[0][1] == 'O' && quancaro[1][1] == 'O' && quancaro[2][1] == 'O') || (quancaro[0][2] == 'O' && quancaro[1][2] == 'O' && quancaro[2][2] == 'O') || (quancaro[0][0] == 'O' && quancaro[1][1] == 'O' && quancaro[2][2] == 'O') || (quancaro[2][0] == 'O' && quancaro[1][1] == 'O' && quancaro[0][2] == 'O')) {
+                alert('X win');
+            }
+        }
+
+    </script>
+    <input type="button" value="Turn X" id="idx" onclick="clickx()">
+    <input type="button" value="Turn O" id="idy" onclick="clicko()">
+</form>
+</body>
+</html>
