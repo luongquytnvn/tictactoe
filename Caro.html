@@ -8,61 +8,38 @@
 <form name="Caro">
     <p id="idoutput"></p>
     <script>
-        let bancaro = '<table border="1;" style="border-collapse: collapse" cellpadding="0" cellspacing="0">';
-        let quancaro = [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']];
-        let turn = true;
-        for (i = 0; i < 10; i++) {
+        var bancaro = '<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse">';
+        var turn = true;
+
+        for (i = 0; i < 3; i++) {
             bancaro += '<tr>';
-            for (j = 0; j < 10; j++) {
-                bancaro += '<td style="text-align: center" width="20" height="20">' + quancaro[i][j] + '<td/>';
+            for (j = 0; j < 3; j++) {
+                bancaro += '<td style="text-align: center" width="20" height="20">' + '<input type="button" value=" " id="id' + i + j + '" onclick="clickx(this)" style="width: 20px;height: 20px">' + '<td/>';
             }
             bancaro += '<tr/>';
         }
         bancaro += '<table/>';
         document.getElementById('idoutput').innerHTML = bancaro;
 
-        function clickx() {
-            let bancaro = '<table border="1;" style="border-collapse: collapse" cellpadding="0" cellspacing="0">';
-            let x = parseInt(prompt('X='));
-            let y = parseInt(prompt('Y='));
-            if (turn) {
-                quancaro[x][y] = 'X';
-                for (i = 0; i < 10; i++) {
-                    bancaro += '<tr>';
-                    for (j = 0; j < 10; j++) {
-                        bancaro += '<td style="text-align: center" width="20" height="20">' + quancaro[i][j] + '<td/>';
-                    }
-                    bancaro += '<tr/>';
-                }
-                bancaro += '<table/>';
-                document.getElementById('idoutput').innerHTML = bancaro;
-                turn = false;
-            }
-        }
 
-        function clicko() {
-            let bancaro = '<table border="1;" style="border-collapse: collapse" cellpadding="0" cellspacing="0">';
-            let x = parseInt(prompt('X='));
-            let y = parseInt(prompt('Y='));
+        function clickx(anx) {
+            bancaro = '<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse">';
             if (turn) {
+                turn = false;
+                anx.value = 'X';
             } else {
-                quancaro[x][y] = 'O';
-                for (i = 0; i < 10; i++) {
-                    bancaro += '<tr>';
-                    for (j = 0; j < 10; j++) {
-                        bancaro += '<td style="text-align: center" width="20" height="20">' + quancaro[i][j] + '<td/>';
-                    }
-                    bancaro += '<tr/>';
-                }
-                bancaro += '<table/>';
-                document.getElementById('idoutput').innerHTML = bancaro;
+                anx.value = 'O';
                 turn = true;
             }
+            if (( document.getElementById('id00').value == 'O' && document.getElementById('id01').value == 'O' && document.getElementById('id02').value == 'O' ) || ( document.getElementById('id10').value == 'O' && document.getElementById('id11').value == 'O' && document.getElementById('id12').value == 'O' ) || ( document.getElementById('id20').value == 'O' && document.getElementById('id21').value == 'O' && document.getElementById('id22').value == 'O' ) || ( document.getElementById('id00').value == 'O' && document.getElementById('id10').value == 'O' && document.getElementById('id20').value == 'O' ) || ( document.getElementById('id01').value == 'O' && document.getElementById('id11').value == 'O' && document.getElementById('id21').value == 'O' ) || ( document.getElementById('id02').value == 'O' && document.getElementById('id12').value == 'O' && document.getElementById('id22').value == 'O' ) || ( document.getElementById('id00').value == 'O' && document.getElementById('id11').value == 'O' && document.getElementById('id22').value == 'O' ) || ( document.getElementById('id20').value == 'O' && document.getElementById('id11').value == 'O' && quancaro[0][2] == 'O' )) {
+                alert('O win');
+            } else if ( ( document.getElementById('id00').value == 'X' && document.getElementById('id01').value == 'X' && document.getElementById('id02').value == 'X' ) || ( document.getElementById('id10').value == 'X' && document.getElementById('id11').value == 'X' && document.getElementById('id12').value == 'X' ) || ( document.getElementById('id20').value == 'X' && document.getElementById('id21').value == 'X' && document.getElementById('id22').value == 'X' ) || ( document.getElementById('id00').value == 'X' && document.getElementById('id10').value == 'X' && document.getElementById('id20').value == 'X' ) || ( document.getElementById('id01').value == 'X' && document.getElementById('id11').value == 'X' && document.getElementById('id21').value == 'X' ) || ( document.getElementById('id02').value == 'X' && document.getElementById('id12').value == 'X' && document.getElementById('id22').value == 'X' ) || ( document.getElementById('id00').value == 'X' && document.getElementById('id11').value == 'X' && document.getElementById('id22').value == 'X' ) || ( document.getElementById('id20').value == 'X' && document.getElementById('id11').value == 'X' && quancaro[0][2] == 'X' ) ) {
+                alert('X win');
+            }
         }
 
+        
     </script>
-    <input type="button" value="Turn X" id="idx" onclick="clickx()">
-    <input type="button" value="Turn O" id="idy" onclick="clicko()">
 </form>
 </body>
 </html>
